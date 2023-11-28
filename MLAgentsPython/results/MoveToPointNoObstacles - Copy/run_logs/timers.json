@@ -1,0 +1,47 @@
+{
+    "name": "root",
+    "metadata": {
+        "timer_format_version": "0.1.0",
+        "start_time_seconds": "1701185953",
+        "python_version": "3.8.0 (tags/v3.8.0:fa919fd, Oct 14 2019, 19:37:50) [MSC v.1916 64 bit (AMD64)]",
+        "command_line_arguments": "C:\\Users\\jackp\\Desktop\\Development\\FYP\\MLAgentsPython\\scripts\\mlagents-learn .\\config\\FYP_Movement_cfg.yaml --run-id=MoveToPointNoObstacles",
+        "mlagents_version": "0.29.0",
+        "mlagents_envs_version": "0.29.0",
+        "communication_protocol_version": "1.5.0",
+        "pytorch_version": "2.1.0+cpu",
+        "numpy_version": "1.21.2",
+        "end_time_seconds": "1701185958"
+    },
+    "total": 4.3197478,
+    "count": 1,
+    "self": 0.004843700000000339,
+    "children": {
+        "run_training.setup": {
+            "total": 0.07582669999999991,
+            "count": 1,
+            "self": 0.07582669999999991
+        },
+        "TrainerController.start_learning": {
+            "total": 4.239077399999999,
+            "count": 1,
+            "self": 0.000262199999998991,
+            "children": {
+                "TrainerController._reset_env": {
+                    "total": 4.2387895,
+                    "count": 1,
+                    "self": 4.2387895
+                },
+                "trainer_threads": {
+                    "total": 7.000000001866624e-07,
+                    "count": 1,
+                    "self": 7.000000001866624e-07
+                },
+                "TrainerController._save_models": {
+                    "total": 2.4999999999941735e-05,
+                    "count": 1,
+                    "self": 2.4999999999941735e-05
+                }
+            }
+        }
+    }
+}

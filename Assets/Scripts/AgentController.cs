@@ -16,6 +16,10 @@ public class AgentController : Agent
     private Vector3 _targetStartingTransformPosition;
 
     private bool _isLookingAtTarget = false;
+    
+    [SerializeField] private Renderer ground;
+    [SerializeField] private Texture victoryTexture;
+    [SerializeField] private Texture failureTexture;
 
     private void Start()
     {
@@ -51,7 +55,7 @@ public class AgentController : Agent
 
         if (CheckIfLookingAtTarget() && !_isLookingAtTarget)
         {
-            AddReward(0.1f);
+            // AddReward(0.1f);
             _isLookingAtTarget = true;
         }
     }
@@ -101,22 +105,31 @@ public class AgentController : Agent
 
         continuousActions[0] = Input.GetAxis("Vertical");
         continuousActions[1] = Input.GetAxis("Horizontal");
+        
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.GetComponent<GoalScript>())
         {
-            AddReward(1);
-            EnvironmentManager.Instance.AddTexture(true);
+            if (_isLookingAtTarget)
+                AddReward(1);
+            else
+                AddReward(0.5f);
+            AddTexture(true);
             EndEpisode();
         }
         else if (other.GetComponent<WallScript>())
         {
             AddReward(-1);
-            EnvironmentManager.Instance.AddTexture(false);
+            AddTexture(false);
             EndEpisode();
         }
+    }
+    
+    internal void AddTexture(bool succeeded)
+    {
+        ground.material.mainTexture = succeeded ? victoryTexture : failureTexture;
     }
 
     private void OnDrawGizmos()

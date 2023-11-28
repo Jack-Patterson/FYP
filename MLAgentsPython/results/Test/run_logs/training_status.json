@@ -2,22 +2,22 @@
     "FYP_Movement_1": {
         "checkpoints": [
             {
-                "steps": 32489,
-                "file_path": "results\\Test\\FYP_Movement_1\\FYP_Movement_1-32489.onnx",
-                "reward": -0.49999999441206455,
-                "creation_time": 1701085237.6400697,
+                "steps": 47040,
+                "file_path": "results\\Test\\FYP_Movement_1\\FYP_Movement_1-47040.onnx",
+                "reward": -0.2666666507720947,
+                "creation_time": 1701162654.0288918,
                 "auxillary_file_paths": [
-                    "results\\Test\\FYP_Movement_1\\FYP_Movement_1-32489.pt"
+                    "results\\Test\\FYP_Movement_1\\FYP_Movement_1-47040.pt"
                 ]
             }
         ],
         "final_checkpoint": {
-            "steps": 32489,
+            "steps": 47040,
             "file_path": "results\\Test\\FYP_Movement_1.onnx",
-            "reward": -0.49999999441206455,
-            "creation_time": 1701085237.6400697,
+            "reward": -0.2666666507720947,
+            "creation_time": 1701162654.0288918,
             "auxillary_file_paths": [
-                "results\\Test\\FYP_Movement_1\\FYP_Movement_1-32489.pt"
+                "results\\Test\\FYP_Movement_1\\FYP_Movement_1-47040.pt"
             ]
         }
     },
