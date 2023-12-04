@@ -89,6 +89,8 @@ public class AgentController : Agent
 
         Move(zMovement);
         Rotate(xRotation);
+
+        AddReward(-1f/MaxStep);
     }
 
     public override void CollectObservations(VectorSensor sensor)
@@ -134,11 +136,13 @@ public class AgentController : Agent
 
     private void OnDrawGizmos()
     {
+        Vector3 transformPosition = transform.position;
+        
         Gizmos.color = Color.green;
-        Gizmos.DrawLine(transform.position, transform.position + transform.forward * 2f);
+        Gizmos.DrawLine(transformPosition, transformPosition + transform.forward * 2f);
         
         Gizmos.color = Color.red;
-        Vector3 transformToTarget = transform.position - target.transform.position;
-        Gizmos.DrawLine(transform.position, target.transform.position);
+        Vector3 transformToTarget = transformPosition - target.transform.position;
+        Gizmos.DrawLine(transformPosition, transformPosition);
     }
 }
