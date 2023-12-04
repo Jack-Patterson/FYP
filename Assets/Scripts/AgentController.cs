@@ -55,7 +55,6 @@ public class AgentController : Agent
 
         if (CheckIfLookingAtTarget() && !_isLookingAtTarget)
         {
-            // AddReward(0.1f);
             _isLookingAtTarget = true;
         }
     }
@@ -114,16 +113,13 @@ public class AgentController : Agent
     {
         if (other.GetComponent<GoalScript>())
         {
-            if (_isLookingAtTarget)
-                AddReward(1);
-            else
-                AddReward(0.5f);
+            AddReward(_isLookingAtTarget ? 1f : 0.5f);
             AddTexture(true);
             EndEpisode();
         }
         else if (other.GetComponent<WallScript>())
         {
-            AddReward(-1);
+            AddReward(-1f);
             AddTexture(false);
             EndEpisode();
         }
