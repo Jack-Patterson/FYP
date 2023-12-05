@@ -1,18 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
-public class GoalScript : MonoBehaviour
+public class GoalScript : MonoBehaviour, ITriggerableObject
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private EnvironmentManager environmentManager;
+    
+    public void Trigger(AgentController agent)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        agent.AddReward(agent.IsLookingAtTarget ? Constants.TargetFacingCollisionReward : Constants.TargetNotFacingCollisionReward);
+        environmentManager.AddTexture(true);
+        agent.EndEpisode();
     }
 }

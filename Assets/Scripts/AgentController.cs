@@ -7,32 +7,24 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class AgentController : Agent
 {
-    private const float CharacterMoveSpeed = 7f;
-    private const float CharacterRotateSpeed = 80f;
-
     [SerializeField] private Transform target;
     private Vector3 _agentStartingTransformPosition;
     private Quaternion _agentStartingTransformRotation;
     private Vector3 _targetStartingTransformPosition;
 
-    private bool _isLookingAtTarget = false;
-    
-    [SerializeField] private Renderer ground;
-    [SerializeField] private Texture victoryTexture;
-    [SerializeField] private Texture failureTexture;
+    public bool IsLookingAtTarget { get; private set; } = false;
+    [SerializeField] private EnvironmentManager environmentManager;
 
     private void Start()
     {
         _agentStartingTransformPosition = transform.position;
         _agentStartingTransformRotation = transform.rotation;
         _targetStartingTransformPosition = target.transform.position;
-        print("start");
-        // StartCoroutine(PrintObservations());
     }
 
     private IEnumerator PrintObservations()
     {
-        yield return new WaitForSeconds(10f);
+        yield return new WaitForSeconds(Constants.PrintWaitTime);
         print(transform.position);
         print(transform.rotation);
         print(target.transform.position);
@@ -45,17 +37,17 @@ public class AgentController : Agent
     private void Move(float zMovement)
     {
         Vector3 directionToMove = Vector3.forward * zMovement;
-        transform.Translate(directionToMove * (CharacterMoveSpeed * Time.deltaTime));
+        transform.Translate(directionToMove * (Constants.CharacterMoveSpeed * Time.deltaTime));
     }
 
     private void Rotate(float xRotation)
     {
-        float rotationDirection = xRotation * CharacterRotateSpeed * Time.deltaTime;
+        float rotationDirection = xRotation * Constants.CharacterRotateSpeed * Time.deltaTime;
         transform.Rotate(Vector3.up, rotationDirection);
 
-        if (CheckIfLookingAtTarget() && !_isLookingAtTarget)
+        if (CheckIfLookingAtTarget() && !IsLookingAtTarget)
         {
-            _isLookingAtTarget = true;
+            IsLookingAtTarget = true;
         }
     }
 
@@ -64,21 +56,24 @@ public class AgentController : Agent
         Vector3 playerToTarget = target.transform.position - transform.position;
         float dotProduct = Vector3.Dot(playerToTarget.normalized, transform.forward.normalized);
 
-        if (dotProduct > 0.8f)
+        if (dotProduct > Constants.DotProductAmount)
         {
             return true;
         }
-        _isLookingAtTarget = false;
+        IsLookingAtTarget = false;
         return false;
     }
 
     public override void OnEpisodeBegin()
     {
-        transform.position = new Vector3(_agentStartingTransformPosition.x + Random.Range(-3f, 3f),
-            _agentStartingTransformPosition.y, _agentStartingTransformPosition.z + Random.Range(-3f, 3f));;
-        transform.rotation = Quaternion.Euler(_agentStartingTransformRotation.x, Random.Range(-120f, 120f), _agentStartingTransformRotation.z);
-        target.transform.position = new Vector3(_targetStartingTransformPosition.x + Random.Range(-3f, 3f), _targetStartingTransformPosition.y,
-            _targetStartingTransformPosition.z + Random.Range(-3f, 3f));
+        transform.position = new Vector3(_agentStartingTransformPosition.x + Random.Range(Constants.RandomRangeMinPosition, Constants.RandomRangeMaxPosition),
+            _agentStartingTransformPosition.y, _agentStartingTransformPosition.z + Random.Range(Constants.RandomRangeMinPosition, Constants.RandomRangeMaxPosition));;
+        transform.rotation = Quaternion.Euler(_agentStartingTransformRotation.x, 
+            Random.Range(Constants.RandomRangeMinRotation, Constants.RandomRangeMaxRotation), _agentStartingTransformRotation.z);
+        target.transform.position = new Vector3(_targetStartingTransformPosition.x + 
+                                                Random.Range(Constants.RandomRangeMinPosition, Constants.RandomRangeMaxPosition), 
+            _targetStartingTransformPosition.y,
+            _targetStartingTransformPosition.z + Random.Range(Constants.RandomRangeMinPosition, Constants.RandomRangeMaxPosition));
     }
 
     public override void OnActionReceived(ActionBuffers actions)
@@ -89,7 +84,7 @@ public class AgentController : Agent
         Move(zMovement);
         Rotate(xRotation);
 
-        AddReward(-1f/MaxStep);
+        AddReward(Constants.MaxStepDividend/MaxStep);
     }
 
     public override void CollectObservations(VectorSensor sensor)
@@ -97,48 +92,18 @@ public class AgentController : Agent
         sensor.AddObservation(transform.position);
         sensor.AddObservation(transform.rotation);
         sensor.AddObservation(target.position);
-        sensor.AddObservation(_isLookingAtTarget);
+        sensor.AddObservation(IsLookingAtTarget);
     }
 
     public override void Heuristic(in ActionBuffers actionsOut)
     {
         ActionSegment<float> continuousActions = actionsOut.ContinuousActions;
 
-        continuousActions[0] = Input.GetAxis("Vertical");
-        continuousActions[1] = Input.GetAxis("Horizontal");
-        
+        (continuousActions[0], continuousActions[1]) = (Input.GetAxis("Vertical"), Input.GetAxis("Horizontal"));
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponent<GoalScript>())
-        {
-            AddReward(_isLookingAtTarget ? 1f : 0.5f);
-            AddTexture(true);
-            EndEpisode();
-        }
-        else if (other.GetComponent<WallScript>())
-        {
-            AddReward(-1f);
-            AddTexture(false);
-            EndEpisode();
-        }
-    }
-    
-    internal void AddTexture(bool succeeded)
-    {
-        ground.material.mainTexture = succeeded ? victoryTexture : failureTexture;
-    }
-
-    private void OnDrawGizmos()
-    {
-        Vector3 transformPosition = transform.position;
-        
-        Gizmos.color = Color.green;
-        Gizmos.DrawLine(transformPosition, transformPosition + transform.forward * 2f);
-        
-        Gizmos.color = Color.red;
-        Vector3 transformToTarget = transformPosition - target.transform.position;
-        Gizmos.DrawLine(transformPosition, transformPosition);
+        other.GetComponent<ITriggerableObject>()?.Trigger(this);
     }
 }
