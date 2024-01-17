@@ -34,13 +34,13 @@ public class AgentController : Agent
         }
     }
 
-    private void Move(float zMovement)
+    protected virtual void Move(float zMovement)
     {
         Vector3 directionToMove = Vector3.forward * zMovement;
         transform.Translate(directionToMove * (Constants.CharacterMoveSpeed * Time.deltaTime));
     }
 
-    private void Rotate(float xRotation)
+    protected virtual void Rotate(float xRotation)
     {
         float rotationDirection = xRotation * Constants.CharacterRotateSpeed * Time.deltaTime;
         transform.Rotate(Vector3.up, rotationDirection);

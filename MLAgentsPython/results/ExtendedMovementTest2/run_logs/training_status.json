@@ -1,0 +1,38 @@
+{
+    "FYP_Movement_1": {
+        "checkpoints": [
+            {
+                "steps": 10271,
+                "file_path": "results\\ExtendedMovementTest2\\FYP_Movement_1\\FYP_Movement_1-10271.onnx",
+                "reward": null,
+                "creation_time": 1705516534.9572468,
+                "auxillary_file_paths": [
+                    "results\\ExtendedMovementTest2\\FYP_Movement_1\\FYP_Movement_1-10271.pt"
+                ]
+            },
+            {
+                "steps": 20534,
+                "file_path": "results\\ExtendedMovementTest2\\FYP_Movement_1\\FYP_Movement_1-20534.onnx",
+                "reward": null,
+                "creation_time": 1705516662.2240703,
+                "auxillary_file_paths": [
+                    "results\\ExtendedMovementTest2\\FYP_Movement_1\\FYP_Movement_1-20534.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 20534,
+            "file_path": "results\\ExtendedMovementTest2\\FYP_Movement_1.onnx",
+            "reward": null,
+            "creation_time": 1705516662.2240703,
+            "auxillary_file_paths": [
+                "results\\ExtendedMovementTest2\\FYP_Movement_1\\FYP_Movement_1-20534.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.29.0",
+        "torch_version": "2.1.0+cpu"
+    }
+}

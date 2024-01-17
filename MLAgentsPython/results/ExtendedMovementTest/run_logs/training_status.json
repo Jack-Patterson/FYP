@@ -1,0 +1,65 @@
+{
+    "FYP_Movement_1": {
+        "checkpoints": [
+            {
+                "steps": 3999973,
+                "file_path": "results\\ExtendedMovementTest\\FYP_Movement_1\\FYP_Movement_1-3999973.onnx",
+                "reward": 0.40795879316731143,
+                "creation_time": 1705518747.20906,
+                "auxillary_file_paths": [
+                    "results\\ExtendedMovementTest\\FYP_Movement_1\\FYP_Movement_1-3999973.pt"
+                ]
+            },
+            {
+                "steps": 4499999,
+                "file_path": "results\\ExtendedMovementTest\\FYP_Movement_1\\FYP_Movement_1-4499999.onnx",
+                "reward": 0.5714161562854829,
+                "creation_time": 1705519014.011197,
+                "auxillary_file_paths": [
+                    "results\\ExtendedMovementTest\\FYP_Movement_1\\FYP_Movement_1-4499999.pt"
+                ]
+            },
+            {
+                "steps": 4999984,
+                "file_path": "results\\ExtendedMovementTest\\FYP_Movement_1\\FYP_Movement_1-4999984.onnx",
+                "reward": 0.5700491139044365,
+                "creation_time": 1705519279.7328775,
+                "auxillary_file_paths": [
+                    "results\\ExtendedMovementTest\\FYP_Movement_1\\FYP_Movement_1-4999984.pt"
+                ]
+            },
+            {
+                "steps": 5001369,
+                "file_path": "results\\ExtendedMovementTest\\FYP_Movement_1\\FYP_Movement_1-5001369.onnx",
+                "reward": null,
+                "creation_time": 1705519281.3578954,
+                "auxillary_file_paths": [
+                    "results\\ExtendedMovementTest\\FYP_Movement_1\\FYP_Movement_1-5001369.pt"
+                ]
+            },
+            {
+                "steps": 5092072,
+                "file_path": "results\\ExtendedMovementTest\\FYP_Movement_1\\FYP_Movement_1-5092072.onnx",
+                "reward": 0.5025889226140416,
+                "creation_time": 1705520701.023607,
+                "auxillary_file_paths": [
+                    "results\\ExtendedMovementTest\\FYP_Movement_1\\FYP_Movement_1-5092072.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 5092072,
+            "file_path": "results\\ExtendedMovementTest\\FYP_Movement_1.onnx",
+            "reward": 0.5025889226140416,
+            "creation_time": 1705520701.023607,
+            "auxillary_file_paths": [
+                "results\\ExtendedMovementTest\\FYP_Movement_1\\FYP_Movement_1-5092072.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.29.0",
+        "torch_version": "2.1.0+cpu"
+    }
+}
