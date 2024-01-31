@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using Unity.MLAgents;
 using Unity.MLAgents.Actuators;
 using Unity.MLAgents.Sensors;
@@ -11,15 +12,30 @@ public class AgentController : Agent
     private Vector3 _agentStartingTransformPosition;
     private Quaternion _agentStartingTransformRotation;
     private Vector3 _targetStartingTransformPosition;
+    
+    private RayPerceptionSensorComponent3D _rayPerceptionSensorUpper;
+    private RayPerceptionSensorComponent3D _rayPerceptionSensorMiddle;
+    private RayPerceptionSensorComponent3D _rayPerceptionSensorLower;
 
     public bool IsLookingAtTarget { get; private set; } = false;
     [SerializeField] private EnvironmentManager environmentManager;
+
+    private readonly float[] _emptyValues = new float[70];
 
     private void Start()
     {
         _agentStartingTransformPosition = transform.position;
         _agentStartingTransformRotation = transform.rotation;
         _targetStartingTransformPosition = target.transform.position;
+
+        RayPerceptionSensorComponent3D[] sensorComponents = GetComponents<RayPerceptionSensorComponent3D>();
+        foreach (RayPerceptionSensorComponent3D raySensor in sensorComponents)
+        {
+            if (raySensor.SensorName.Equals("RayPerceptionSensorUpper")) _rayPerceptionSensorUpper = raySensor;
+            else if (raySensor.SensorName.Equals("RayPerceptionSensorMiddle")) _rayPerceptionSensorMiddle = raySensor;
+            else if (raySensor.SensorName.Equals("RayPerceptionSensorLower")) _rayPerceptionSensorLower = raySensor;
+            else Debug.LogError("RayPerceptionSensorComponent3D of unknown name found. Name: " + raySensor.SensorName);
+        }
     }
 
     private IEnumerator PrintObservations()
@@ -34,13 +50,13 @@ public class AgentController : Agent
         }
     }
 
-    protected virtual void Move(float zMovement)
+    protected void Move(float zMovement, float xMovement)
     {
-        Vector3 directionToMove = Vector3.forward * zMovement;
-        transform.Translate(directionToMove * (Constants.CharacterMoveSpeed * Time.deltaTime));
+        Vector3 directionToMove = new Vector3(xMovement, 0, zMovement);
+        transform.Translate(directionToMove.normalized * (Constants.CharacterMoveSpeed * Time.deltaTime));
     }
 
-    protected virtual void Rotate(float xRotation)
+    protected void Rotate(float xRotation)
     {
         float rotationDirection = xRotation * Constants.CharacterRotateSpeed * Time.deltaTime;
         transform.Rotate(Vector3.up, rotationDirection);
@@ -79,9 +95,10 @@ public class AgentController : Agent
     public override void OnActionReceived(ActionBuffers actions)
     {
         float zMovement = actions.ContinuousActions[0];
-        float xRotation = actions.ContinuousActions[1];
+        float xMovement = actions.ContinuousActions[1];
+        float xRotation = actions.ContinuousActions[2];
 
-        Move(zMovement);
+        Move(zMovement, xMovement);
         Rotate(xRotation);
 
         AddReward(Constants.MaxStepDividend/MaxStep);
@@ -91,8 +108,12 @@ public class AgentController : Agent
     {
         sensor.AddObservation(transform.position);
         sensor.AddObservation(transform.rotation);
-        sensor.AddObservation(target.position);
-        sensor.AddObservation(IsLookingAtTarget);
+        sensor.AddObservation(false);
+        sensor.AddObservation(false);
+        sensor.AddObservation(false);
+        sensor.AddObservation(0);
+        sensor.AddObservation(0);
+        sensor.AddObservation(0);
     }
 
     public override void Heuristic(in ActionBuffers actionsOut)

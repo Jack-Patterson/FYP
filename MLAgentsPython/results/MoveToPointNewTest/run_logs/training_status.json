@@ -1,0 +1,65 @@
+{
+    "FYP_Movement_1": {
+        "checkpoints": [
+            {
+                "steps": 3999995,
+                "file_path": "results\\MoveToPointNewTest\\FYP_Movement_1\\FYP_Movement_1-3999995.onnx",
+                "reward": 0.9676545816202643,
+                "creation_time": 1706626684.248317,
+                "auxillary_file_paths": [
+                    "results\\MoveToPointNewTest\\FYP_Movement_1\\FYP_Movement_1-3999995.pt"
+                ]
+            },
+            {
+                "steps": 4036541,
+                "file_path": "results\\MoveToPointNewTest\\FYP_Movement_1\\FYP_Movement_1-4036541.onnx",
+                "reward": null,
+                "creation_time": 1706626725.5442026,
+                "auxillary_file_paths": [
+                    "results\\MoveToPointNewTest\\FYP_Movement_1\\FYP_Movement_1-4036541.pt"
+                ]
+            },
+            {
+                "steps": 4053198,
+                "file_path": "results\\MoveToPointNewTest\\FYP_Movement_1\\FYP_Movement_1-4053198.onnx",
+                "reward": 0.9603586911404733,
+                "creation_time": 1706627415.766079,
+                "auxillary_file_paths": [
+                    "results\\MoveToPointNewTest\\FYP_Movement_1\\FYP_Movement_1-4053198.pt"
+                ]
+            },
+            {
+                "steps": 4499983,
+                "file_path": "results\\MoveToPointNewTest\\FYP_Movement_1\\FYP_Movement_1-4499983.onnx",
+                "reward": 0.9530774902678647,
+                "creation_time": 1706627957.8980026,
+                "auxillary_file_paths": [
+                    "results\\MoveToPointNewTest\\FYP_Movement_1\\FYP_Movement_1-4499983.pt"
+                ]
+            },
+            {
+                "steps": 4504470,
+                "file_path": "results\\MoveToPointNewTest\\FYP_Movement_1\\FYP_Movement_1-4504470.onnx",
+                "reward": 0.9879285991191864,
+                "creation_time": 1706628026.0970397,
+                "auxillary_file_paths": [
+                    "results\\MoveToPointNewTest\\FYP_Movement_1\\FYP_Movement_1-4504470.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 4504470,
+            "file_path": "results\\MoveToPointNewTest\\FYP_Movement_1.onnx",
+            "reward": 0.9879285991191864,
+            "creation_time": 1706628026.0970397,
+            "auxillary_file_paths": [
+                "results\\MoveToPointNewTest\\FYP_Movement_1\\FYP_Movement_1-4504470.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.29.0",
+        "torch_version": "2.1.0+cpu"
+    }
+}
