@@ -90,6 +90,7 @@ public class AgentController : Agent
                                                 Random.Range(Constants.RandomRangeMinPosition, Constants.RandomRangeMaxPosition), 
             _targetStartingTransformPosition.y,
             _targetStartingTransformPosition.z + Random.Range(Constants.RandomRangeMinPosition, Constants.RandomRangeMaxPosition));
+        environmentManager.OnEpisodeBegin();
     }
 
     public override void OnActionReceived(ActionBuffers actions)

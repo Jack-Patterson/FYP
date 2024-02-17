@@ -1,0 +1,65 @@
+{
+    "FYP_Movement_1": {
+        "checkpoints": [
+            {
+                "steps": 4999984,
+                "file_path": "results\\MoveToPointWithObstacles\\FYP_Movement_1\\FYP_Movement_1-4999984.onnx",
+                "reward": -0.0027714230120182036,
+                "creation_time": 1708211851.772787,
+                "auxillary_file_paths": [
+                    "results\\MoveToPointWithObstacles\\FYP_Movement_1\\FYP_Movement_1-4999984.pt"
+                ]
+            },
+            {
+                "steps": 5499983,
+                "file_path": "results\\MoveToPointWithObstacles\\FYP_Movement_1\\FYP_Movement_1-5499983.onnx",
+                "reward": 0.005714297294616699,
+                "creation_time": 1708212345.0460112,
+                "auxillary_file_paths": [
+                    "results\\MoveToPointWithObstacles\\FYP_Movement_1\\FYP_Movement_1-5499983.pt"
+                ]
+            },
+            {
+                "steps": 5999997,
+                "file_path": "results\\MoveToPointWithObstacles\\FYP_Movement_1\\FYP_Movement_1-5999997.onnx",
+                "reward": 0.12276786658912897,
+                "creation_time": 1708212841.4006894,
+                "auxillary_file_paths": [
+                    "results\\MoveToPointWithObstacles\\FYP_Movement_1\\FYP_Movement_1-5999997.pt"
+                ]
+            },
+            {
+                "steps": 6499979,
+                "file_path": "results\\MoveToPointWithObstacles\\FYP_Movement_1\\FYP_Movement_1-6499979.onnx",
+                "reward": 0.2906428622081876,
+                "creation_time": 1708213338.1394658,
+                "auxillary_file_paths": [
+                    "results\\MoveToPointWithObstacles\\FYP_Movement_1\\FYP_Movement_1-6499979.pt"
+                ]
+            },
+            {
+                "steps": 6857766,
+                "file_path": "results\\MoveToPointWithObstacles\\FYP_Movement_1\\FYP_Movement_1-6857766.onnx",
+                "reward": null,
+                "creation_time": 1708213699.4954755,
+                "auxillary_file_paths": [
+                    "results\\MoveToPointWithObstacles\\FYP_Movement_1\\FYP_Movement_1-6857766.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 6857766,
+            "file_path": "results\\MoveToPointWithObstacles\\FYP_Movement_1.onnx",
+            "reward": null,
+            "creation_time": 1708213699.4954755,
+            "auxillary_file_paths": [
+                "results\\MoveToPointWithObstacles\\FYP_Movement_1\\FYP_Movement_1-6857766.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.29.0",
+        "torch_version": "2.1.0+cpu"
+    }
+}
