@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using Unity.MLAgents;
 using Unity.MLAgents.Actuators;
 using Unity.MLAgents.Sensors;
@@ -12,30 +11,15 @@ public class AgentController : Agent
     private Vector3 _agentStartingTransformPosition;
     private Quaternion _agentStartingTransformRotation;
     private Vector3 _targetStartingTransformPosition;
-    
-    private RayPerceptionSensorComponent3D _rayPerceptionSensorUpper;
-    private RayPerceptionSensorComponent3D _rayPerceptionSensorMiddle;
-    private RayPerceptionSensorComponent3D _rayPerceptionSensorLower;
 
     public bool IsLookingAtTarget { get; private set; } = false;
     [SerializeField] private EnvironmentManager environmentManager;
-
-    private readonly float[] _emptyValues = new float[70];
 
     private void Start()
     {
         _agentStartingTransformPosition = transform.position;
         _agentStartingTransformRotation = transform.rotation;
         _targetStartingTransformPosition = target.transform.position;
-
-        RayPerceptionSensorComponent3D[] sensorComponents = GetComponents<RayPerceptionSensorComponent3D>();
-        foreach (RayPerceptionSensorComponent3D raySensor in sensorComponents)
-        {
-            if (raySensor.SensorName.Equals("RayPerceptionSensorUpper")) _rayPerceptionSensorUpper = raySensor;
-            else if (raySensor.SensorName.Equals("RayPerceptionSensorMiddle")) _rayPerceptionSensorMiddle = raySensor;
-            else if (raySensor.SensorName.Equals("RayPerceptionSensorLower")) _rayPerceptionSensorLower = raySensor;
-            else Debug.LogError("RayPerceptionSensorComponent3D of unknown name found. Name: " + raySensor.SensorName);
-        }
     }
 
     private IEnumerator PrintObservations()

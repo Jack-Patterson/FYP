@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 public class EnvironmentManager : MonoBehaviour
@@ -11,20 +13,28 @@ public class EnvironmentManager : MonoBehaviour
     [SerializeField] private AgentController agent;
     [SerializeField] private GoalScript target;
     
-    [SerializeField] private Transform wallGap;
+    [SerializeField] private Transform[] wallGaps;
     [SerializeField] private Vector2 wallGapRange = new Vector2(-22,22);
-    private Vector3 wallGapStartingPosition;
+    private List<Vector3> wallGapStartingPosition;
 
     private void Start()
     {
-        wallGapStartingPosition = wallGap.position;
+        foreach (Transform wallGap in wallGaps)
+        {
+            wallGapStartingPosition.Add(wallGap.position);
+        }
     }
 
     internal void OnEpisodeBegin()
     {
-        var position = wallGap.position;
-        position = new Vector3( wallGapStartingPosition.x + Random.Range(wallGapRange.y, wallGapRange.x), position.y, position.z);
-        wallGap.position = position;
+        for (int i = 0; i < wallGaps.Length; i++)
+        {
+            Transform wallGap = wallGaps[i];
+            Vector3 position = wallGap.position;
+            
+            position = new Vector3( wallGapStartingPosition[i].x + Random.Range(wallGapRange.y, wallGapRange.x), position.y, position.z);
+            wallGap.position = position;
+        }
     }
     
     internal void AddTexture(bool succeeded)
