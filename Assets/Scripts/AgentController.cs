@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using Unity.MLAgents;
 using Unity.MLAgents.Actuators;
 using Unity.MLAgents.Sensors;
@@ -7,19 +8,16 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class AgentController : Agent
 {
-    [SerializeField] private Transform target;
+    [SerializeField] private EnvironmentManager environmentManager;
     private Vector3 _agentStartingTransformPosition;
     private Quaternion _agentStartingTransformRotation;
-    private Vector3 _targetStartingTransformPosition;
-
     public bool IsLookingAtTarget { get; private set; } = false;
-    [SerializeField] private EnvironmentManager environmentManager;
 
     private void Start()
     {
-        _agentStartingTransformPosition = transform.position;
-        _agentStartingTransformRotation = transform.rotation;
-        _targetStartingTransformPosition = target.transform.position;
+        Transform agentTransform = transform;
+        _agentStartingTransformPosition = agentTransform.position;
+        _agentStartingTransformRotation = agentTransform.rotation;
     }
 
     private IEnumerator PrintObservations()
@@ -27,20 +25,19 @@ public class AgentController : Agent
         yield return new WaitForSeconds(Constants.PrintWaitTime);
         print(transform.position);
         print(transform.rotation);
-        print(target.transform.position);
         foreach (float observation in GetObservations())
         {
             print(observation);
         }
     }
 
-    protected void Move(float zMovement, float xMovement)
+    private void Move(float zMovement, float xMovement)
     {
         Vector3 directionToMove = new Vector3(xMovement, 0, zMovement);
         transform.Translate(directionToMove.normalized * (Constants.CharacterMoveSpeed * Time.deltaTime));
     }
 
-    protected void Rotate(float xRotation)
+    private void Rotate(float xRotation)
     {
         float rotationDirection = xRotation * Constants.CharacterRotateSpeed * Time.deltaTime;
         transform.Rotate(Vector3.up, rotationDirection);
@@ -53,7 +50,7 @@ public class AgentController : Agent
 
     private bool CheckIfLookingAtTarget()
     {
-        Vector3 playerToTarget = target.transform.position - transform.position;
+        Vector3 playerToTarget = environmentManager.Target.transform.position - transform.position;
         float dotProduct = Vector3.Dot(playerToTarget.normalized, transform.forward.normalized);
 
         if (dotProduct > Constants.DotProductAmount)
@@ -67,13 +64,10 @@ public class AgentController : Agent
     public override void OnEpisodeBegin()
     {
         transform.position = new Vector3(_agentStartingTransformPosition.x + Random.Range(Constants.RandomRangeMinPosition, Constants.RandomRangeMaxPosition),
-            _agentStartingTransformPosition.y, _agentStartingTransformPosition.z + Random.Range(Constants.RandomRangeMinPosition, Constants.RandomRangeMaxPosition));;
+            _agentStartingTransformPosition.y, _agentStartingTransformPosition.z + Random.Range(Constants.RandomRangeMinPosition, Constants.RandomRangeMaxPosition));
         transform.rotation = Quaternion.Euler(_agentStartingTransformRotation.x, 
             Random.Range(Constants.RandomRangeMinRotation, Constants.RandomRangeMaxRotation), _agentStartingTransformRotation.z);
-        target.transform.position = new Vector3(_targetStartingTransformPosition.x + 
-                                                Random.Range(Constants.RandomRangeMinPosition, Constants.RandomRangeMaxPosition), 
-            _targetStartingTransformPosition.y,
-            _targetStartingTransformPosition.z + Random.Range(Constants.RandomRangeMinPosition, Constants.RandomRangeMaxPosition));
+        
         environmentManager.OnEpisodeBegin();
     }
 
