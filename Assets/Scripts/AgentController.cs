@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using Unity.MLAgents;
 using Unity.MLAgents.Actuators;
 using Unity.MLAgents.Sensors;
@@ -18,6 +17,17 @@ public class AgentController : Agent
         Transform agentTransform = transform;
         _agentStartingTransformPosition = agentTransform.position;
         _agentStartingTransformRotation = agentTransform.rotation;
+        print(StepCount);
+    }
+
+    private void Update()
+    {
+        if (MaxStep - StepCount < 10)
+        {
+            SetReward(-1f);
+            environmentManager.AddTexture(false);
+            EndEpisode();
+        }
     }
 
     private IEnumerator PrintObservations()

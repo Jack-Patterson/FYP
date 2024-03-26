@@ -46,7 +46,8 @@ public class EnvironmentManager : MonoBehaviour
             wallGap.position = position;
         }
 
-        Vector3 goalPosition = goalPotentialPositions[Random.Range(0, goalPotentialPositions.Count)].position;
+        Vector3 goalPosition = goalPotentialPositions[0].position;
+            // goalPotentialPositions[Random.Range(0, goalPotentialPositions.Count)].position;
         target.transform.position = new Vector3(goalPosition.x +
                                                 Random.Range(Constants.RandomRangeMinPosition,
                                                     Constants.RandomRangeMaxPosition),

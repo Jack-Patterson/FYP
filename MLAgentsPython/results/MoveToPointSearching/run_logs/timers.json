@@ -1,0 +1,82 @@
+{
+    "name": "root",
+    "metadata": {
+        "timer_format_version": "0.1.0",
+        "start_time_seconds": "1710609918",
+        "python_version": "3.8.0 (tags/v3.8.0:fa919fd, Oct 14 2019, 19:37:50) [MSC v.1916 64 bit (AMD64)]",
+        "command_line_arguments": "C:\\Users\\jackp\\Desktop\\Development\\FYP\\MLAgentsPython\\scripts\\mlagents-learn .\\config\\FYP_Movement_cfg.yaml --run-id=MoveToPointSearching --resume",
+        "mlagents_version": "0.29.0",
+        "mlagents_envs_version": "0.29.0",
+        "communication_protocol_version": "1.5.0",
+        "pytorch_version": "2.1.0+cpu",
+        "numpy_version": "1.21.2",
+        "end_time_seconds": "1710609926"
+    },
+    "total": 7.2757059,
+    "count": 1,
+    "self": 0.007149400000001194,
+    "children": {
+        "run_training.setup": {
+            "total": 0.11929269999999992,
+            "count": 1,
+            "self": 0.11929269999999992
+        },
+        "TrainerController.start_learning": {
+            "total": 7.149263799999999,
+            "count": 1,
+            "self": 0.00010249999999878412,
+            "children": {
+                "TrainerController._reset_env": {
+                    "total": 6.6578752,
+                    "count": 1,
+                    "self": 6.6578752
+                },
+                "TrainerController.advance": {
+                    "total": 0.4372197,
+                    "count": 1,
+                    "self": 9.600000000276054e-06,
+                    "children": {
+                        "env_step": {
+                            "total": 0.4372100999999997,
+                            "count": 1,
+                            "self": 0.0002424999999988131,
+                            "children": {
+                                "SubprocessEnvManager._take_step": {
+                                    "total": 0.4369676000000009,
+                                    "count": 1,
+                                    "self": 1.8400000001861372e-05,
+                                    "children": {
+                                        "TorchPolicy.evaluate": {
+                                            "total": 0.43694919999999904,
+                                            "count": 1,
+                                            "self": 0.006386099999998507,
+                                            "children": {
+                                                "TorchPolicy.sample_actions": {
+                                                    "total": 0.43056310000000053,
+                                                    "count": 1,
+                                                    "self": 0.43056310000000053
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "TrainerController._save_models": {
+                    "total": 0.05406639999999996,
+                    "count": 1,
+                    "self": 2.129999999844756e-05,
+                    "children": {
+                        "RLTrainer._checkpoint": {
+                            "total": 0.05404510000000151,
+                            "count": 1,
+                            "self": 0.05404510000000151
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
