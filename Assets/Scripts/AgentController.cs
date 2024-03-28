@@ -17,7 +17,6 @@ public class AgentController : Agent
         Transform agentTransform = transform;
         _agentStartingTransformPosition = agentTransform.position;
         _agentStartingTransformRotation = agentTransform.rotation;
-        print(StepCount);
     }
 
     private void Update()
@@ -102,7 +101,7 @@ public class AgentController : Agent
         sensor.AddObservation(false);
         sensor.AddObservation(0);
         sensor.AddObservation(0);
-        sensor.AddObservation(0);
+        sensor.AddObservation(Vector3.Distance(transform.position, environmentManager.Target.position));
     }
 
     public override void Heuristic(in ActionBuffers actionsOut)
