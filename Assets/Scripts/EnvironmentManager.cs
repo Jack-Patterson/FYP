@@ -49,9 +49,9 @@ public class EnvironmentManager : MonoBehaviour
         {
             Destroy(_key.gameObject);
         }
-        Vector3 keyPosition = new Vector3(Random.Range(bounds[0].position.x, bounds[1].position.x), 0,
-            Random.Range(bounds[0].position.z, bounds[1].position.z));
-        _key = Instantiate(keyPrefab, keyPosition, Quaternion.identity);
+        // Vector3 keyPosition = new Vector3(Random.Range(bounds[0].position.x, bounds[1].position.x), 0,
+        //     Random.Range(bounds[0].position.z, bounds[1].position.z));
+        // _key = Instantiate(keyPrefab, keyPosition, Quaternion.identity);
     }
 
     internal void AddTexture(bool succeeded)
