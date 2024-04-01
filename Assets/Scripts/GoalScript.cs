@@ -6,7 +6,7 @@ public class GoalScript : MonoBehaviour, ITriggerableObject
     
     public void Trigger(AgentController agent)
     {
-        agent.AddReward(Constants.TargetFacingCollisionReward);
+        agent.AddReward(agent.IsLookingAtTarget ? Constants.TargetFacingCollisionReward : Constants.TargetNotFacingCollisionReward);
         environmentManager.AddTexture(true);
         agent.EndEpisode();
     }
