@@ -73,22 +73,25 @@ public class AgentController : Agent
         bool shouldRotateWall = randomRange >= 0.5f;
 
         Vector3 agentStartingPosition, targetStartingPosition;
-        Vector3 startingPosition = environmentManager.startingTransform.position;
-        if (shouldRotateWall)
-        {
-            (agentStartingPosition, targetStartingPosition) = (
-                new Vector3(_agentStartingTransformPosition.x + 12, 0, startingPosition.z),
-                new Vector3(_targetStartingTransformPosition.x - 12, 0, startingPosition.z));
-        }
-        else
-        {
-            (agentStartingPosition, targetStartingPosition) =
-                (_agentStartingTransformPosition, _targetStartingTransformPosition);
-        }
+        // Vector3 startingPosition = environmentManager.startingTransform.position;
+        // if (shouldRotateWall)
+        // {
+        //     (agentStartingPosition, targetStartingPosition) = (
+        //         new Vector3(_agentStartingTransformPosition.x + 12, 0, startingPosition.z),
+        //         new Vector3(_targetStartingTransformPosition.x - 12, 0, startingPosition.z));
+        // }
+        // else
+        // {
+        //     (agentStartingPosition, targetStartingPosition) =
+        //         (_agentStartingTransformPosition, _targetStartingTransformPosition);
+        // }
+        
+        (agentStartingPosition, targetStartingPosition) =
+            (_agentStartingTransformPosition, _targetStartingTransformPosition);
 
-        (agentStartingPosition, targetStartingPosition) = Random.Range(0f, 1f) >= 0.5f
-            ? (targetStartingPosition, agentStartingPosition)
-            : (agentStartingPosition, targetStartingPosition);
+        // (agentStartingPosition, targetStartingPosition) = Random.Range(0f, 1f) >= 0.5f
+        //     ? (targetStartingPosition, agentStartingPosition)
+        //     : (agentStartingPosition, targetStartingPosition);
 
         transform.position = new Vector3(
             agentStartingPosition.x + Random.Range(Constants.RandomRangeMinPosition, Constants.RandomRangeMaxPosition),
