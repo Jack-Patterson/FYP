@@ -89,9 +89,9 @@ public class AgentController : Agent
         (agentStartingPosition, targetStartingPosition) =
             (_agentStartingTransformPosition, _targetStartingTransformPosition);
 
-        // (agentStartingPosition, targetStartingPosition) = Random.Range(0f, 1f) >= 0.5f
-        //     ? (targetStartingPosition, agentStartingPosition)
-        //     : (agentStartingPosition, targetStartingPosition);
+        (agentStartingPosition, targetStartingPosition) = Random.Range(0f, 1f) >= 0.5f
+            ? (targetStartingPosition, agentStartingPosition)
+            : (agentStartingPosition, targetStartingPosition);
 
         transform.position = new Vector3(
             agentStartingPosition.x + Random.Range(Constants.RandomRangeMinPosition, Constants.RandomRangeMaxPosition),
