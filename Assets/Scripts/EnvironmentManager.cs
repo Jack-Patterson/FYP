@@ -20,29 +20,29 @@ public class EnvironmentManager : MonoBehaviour
 
     internal void OnEpisodeBegin(bool rotateWall)
     {
-        // for (int i = 0; i < wallGaps.Length; i++)
-        // {
-        //     Transform wallGap = wallGaps[i];
-        //     Vector3 position = wallGap.position;
-        //     Quaternion rotation = wallGap.rotation;
-        //
-        //     if (rotateWall)
-        //     {
-        //         position = new Vector3(startingTransform.position.x,
-        //             startingTransform.position.y,
-        //             startingTransform.position.z + Random.Range(wallGapRange.y, wallGapRange.x));
-        //         rotation.eulerAngles = new Vector3(0, 90, 0);
-        //     }
-        //     else
-        //     {
-        //         position = new Vector3(startingTransform.position.x + Random.Range(wallGapRange.y, wallGapRange.x),
-        //             startingTransform.position.y, startingTransform.position.z);
-        //         rotation.eulerAngles = Vector3.zero;
-        //     }
-        //
-        //     wallGap.position = position;
-        //     wallGap.rotation = rotation;
-        // }
+        for (int i = 0; i < wallGaps.Length; i++)
+        {
+            Transform wallGap = wallGaps[i];
+            Vector3 position = wallGap.position;
+            Quaternion rotation = wallGap.rotation;
+        
+            if (rotateWall)
+            {
+                position = new Vector3(startingTransform.position.x,
+                    startingTransform.position.y,
+                    startingTransform.position.z + Random.Range(wallGapRange.y, wallGapRange.x));
+                rotation.eulerAngles = new Vector3(0, 90, 0);
+            }
+            else
+            {
+                position = new Vector3(startingTransform.position.x + Random.Range(wallGapRange.y, wallGapRange.x),
+                    startingTransform.position.y, startingTransform.position.z);
+                rotation.eulerAngles = Vector3.zero;
+            }
+        
+            wallGap.position = position;
+            wallGap.rotation = rotation;
+        }
         //
         //
         // if (_key != null)
