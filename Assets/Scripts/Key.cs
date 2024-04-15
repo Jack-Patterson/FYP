@@ -4,7 +4,7 @@ public class Key : MonoBehaviour, ITriggerableObject
 {
     public void Trigger(AgentController agent)
     {
-        agent.AddReward(0.25f);
+        agent.AddReward(0.1f);
         Destroy(gameObject);
     }
 }
