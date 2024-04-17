@@ -18,14 +18,14 @@ public class EnvironmentManager : MonoBehaviour
     private List<Vector3> wallGapStartingPosition;
     private GameObject _key = null;
 
-    internal void OnEpisodeBegin(bool rotateWall)
+    internal void OnEpisodeBegin(bool rotateWall, Vector3 agentStartingPosition)
     {
         for (int i = 0; i < wallGaps.Length; i++)
         {
             Transform wallGap = wallGaps[i];
             Vector3 position = wallGap.position;
             Quaternion rotation = wallGap.rotation;
-        
+
             if (rotateWall)
             {
                 position = new Vector3(startingTransform.position.x,
@@ -39,19 +39,20 @@ public class EnvironmentManager : MonoBehaviour
                     startingTransform.position.y, startingTransform.position.z);
                 rotation.eulerAngles = Vector3.zero;
             }
-        
+
             wallGap.position = position;
             wallGap.rotation = rotation;
         }
-        //
-        //
-        // if (_key != null)
-        // {
-        //     Destroy(_key.gameObject);
-        // }
-        // Vector3 keyPosition = new Vector3(Random.Range(bounds[0].position.x, bounds[1].position.x), 0,
-        //     Random.Range(bounds[0].position.z, bounds[1].position.z));
-        // _key = Instantiate(keyPrefab, keyPosition, Quaternion.identity);
+
+
+        if (_key != null)
+        {
+            Destroy(_key.gameObject);
+        }
+        Vector3 keyPosition = new Vector3(agentStartingPosition.x + Random.Range(Constants.RandomRangeMinPosition, Constants.RandomRangeMaxPosition),
+            agentStartingPosition.y,
+            agentStartingPosition.z + Random.Range(Constants.RandomRangeMinPosition, Constants.RandomRangeMaxPosition));
+        _key = Instantiate(keyPrefab, keyPosition, Quaternion.identity);
     }
 
     internal void AddTexture(bool succeeded)
