@@ -2,10 +2,35 @@
     "FYP_Movement_1": {
         "checkpoints": [
             {
+<<<<<<< HEAD
                 "steps": 21999950,
                 "file_path": "results\\NewMovement\\FYP_Movement_1\\FYP_Movement_1-21999950.onnx",
                 "reward": -0.7167142634280026,
                 "creation_time": 1713201389.1309655,
+=======
+                "steps": 17999955,
+                "file_path": "results\\NewMovement\\FYP_Movement_1\\FYP_Movement_1-17999955.onnx",
+                "reward": 0.7360259897329591,
+                "creation_time": 1713102367.8971407,
+                "auxillary_file_paths": [
+                    "results\\NewMovement\\FYP_Movement_1\\FYP_Movement_1-17999955.pt"
+                ]
+            },
+            {
+                "steps": 18057422,
+                "file_path": "results\\NewMovement\\FYP_Movement_1\\FYP_Movement_1-18057422.onnx",
+                "reward": 0.5411714255809784,
+                "creation_time": 1713102518.081864,
+                "auxillary_file_paths": [
+                    "results\\NewMovement\\FYP_Movement_1\\FYP_Movement_1-18057422.pt"
+                ]
+            },
+            {
+                "steps": 18067317,
+                "file_path": "results\\NewMovement\\FYP_Movement_1\\FYP_Movement_1-18067317.onnx",
+                "reward": 0.7092238133152325,
+                "creation_time": 1713102576.0124972,
+>>>>>>> parent of a2f039f (Finished around wall training)
                 "auxillary_file_paths": [
                     "results\\NewMovement\\FYP_Movement_1\\FYP_Movement_1-21999950.pt"
                 ]
@@ -27,6 +52,7 @@
                 "auxillary_file_paths": [
                     "results\\NewMovement\\FYP_Movement_1\\FYP_Movement_1-22999993.pt"
                 ]
+<<<<<<< HEAD
             },
             {
                 "steps": 23499963,
@@ -54,6 +80,17 @@
             "creation_time": 1713205063.520282,
             "auxillary_file_paths": [
                 "results\\NewMovement\\FYP_Movement_1\\FYP_Movement_1-23774495.pt"
+=======
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 18980932,
+            "file_path": "results\\NewMovement\\FYP_Movement_1.onnx",
+            "reward": 0.7118214354850352,
+            "creation_time": 1713126354.049517,
+            "auxillary_file_paths": [
+                "results\\NewMovement\\FYP_Movement_1\\FYP_Movement_1-18980932.pt"
+>>>>>>> parent of a2f039f (Finished around wall training)
             ]
         }
     },
