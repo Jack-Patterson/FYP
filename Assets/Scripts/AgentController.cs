@@ -107,7 +107,7 @@ public class AgentController : Agent
             targetStartingPosition.y,
             targetStartingPosition.z +
             Random.Range(Constants.RandomRangeMinPosition, Constants.RandomRangeMaxPosition));
-        environmentManager.OnEpisodeBegin(shouldRotateWall);
+        environmentManager.OnEpisodeBegin(shouldRotateWall, agentStartingPosition);
     }
 
     public override void OnActionReceived(ActionBuffers actions)

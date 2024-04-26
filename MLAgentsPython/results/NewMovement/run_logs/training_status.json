@@ -2,64 +2,101 @@
     "FYP_Movement_1": {
         "checkpoints": [
             {
-                "steps": 16797820,
-                "file_path": "results\\NewMovement\\FYP_Movement_1\\FYP_Movement_1-16797820.onnx",
-                "reward": 0.9454285837709904,
-                "creation_time": 1712092033.2055855,
+<<<<<<< HEAD
+                "steps": 21999950,
+                "file_path": "results\\NewMovement\\FYP_Movement_1\\FYP_Movement_1-21999950.onnx",
+                "reward": -0.7167142634280026,
+                "creation_time": 1713201389.1309655,
+=======
+                "steps": 17999955,
+                "file_path": "results\\NewMovement\\FYP_Movement_1\\FYP_Movement_1-17999955.onnx",
+                "reward": 0.7360259897329591,
+                "creation_time": 1713102367.8971407,
                 "auxillary_file_paths": [
-                    "results\\NewMovement\\FYP_Movement_1\\FYP_Movement_1-16797820.pt"
+                    "results\\NewMovement\\FYP_Movement_1\\FYP_Movement_1-17999955.pt"
                 ]
             },
             {
-                "steps": 16859447,
-                "file_path": "results\\NewMovement\\FYP_Movement_1\\FYP_Movement_1-16859447.onnx",
+                "steps": 18057422,
+                "file_path": "results\\NewMovement\\FYP_Movement_1\\FYP_Movement_1-18057422.onnx",
+                "reward": 0.5411714255809784,
+                "creation_time": 1713102518.081864,
+                "auxillary_file_paths": [
+                    "results\\NewMovement\\FYP_Movement_1\\FYP_Movement_1-18057422.pt"
+                ]
+            },
+            {
+                "steps": 18067317,
+                "file_path": "results\\NewMovement\\FYP_Movement_1\\FYP_Movement_1-18067317.onnx",
+                "reward": 0.7092238133152325,
+                "creation_time": 1713102576.0124972,
+>>>>>>> parent of a2f039f (Finished around wall training)
+                "auxillary_file_paths": [
+                    "results\\NewMovement\\FYP_Movement_1\\FYP_Movement_1-21999950.pt"
+                ]
+            },
+            {
+                "steps": 22499966,
+                "file_path": "results\\NewMovement\\FYP_Movement_1\\FYP_Movement_1-22499966.onnx",
+                "reward": -0.45358822801533866,
+                "creation_time": 1713202412.191136,
+                "auxillary_file_paths": [
+                    "results\\NewMovement\\FYP_Movement_1\\FYP_Movement_1-22499966.pt"
+                ]
+            },
+            {
+                "steps": 22999993,
+                "file_path": "results\\NewMovement\\FYP_Movement_1\\FYP_Movement_1-22999993.onnx",
+                "reward": -0.36523374305530026,
+                "creation_time": 1713203445.2411242,
+                "auxillary_file_paths": [
+                    "results\\NewMovement\\FYP_Movement_1\\FYP_Movement_1-22999993.pt"
+                ]
+<<<<<<< HEAD
+            },
+            {
+                "steps": 23499963,
+                "file_path": "results\\NewMovement\\FYP_Movement_1\\FYP_Movement_1-23499963.onnx",
+                "reward": -0.9331904662152132,
+                "creation_time": 1713204487.9625494,
+                "auxillary_file_paths": [
+                    "results\\NewMovement\\FYP_Movement_1\\FYP_Movement_1-23499963.pt"
+                ]
+            },
+            {
+                "steps": 23774495,
+                "file_path": "results\\NewMovement\\FYP_Movement_1\\FYP_Movement_1-23774495.onnx",
                 "reward": null,
-                "creation_time": 1712092122.7027254,
+                "creation_time": 1713205063.520282,
                 "auxillary_file_paths": [
-                    "results\\NewMovement\\FYP_Movement_1\\FYP_Movement_1-16859447.pt"
-                ]
-            },
-            {
-                "steps": 16880019,
-                "file_path": "results\\NewMovement\\FYP_Movement_1\\FYP_Movement_1-16880019.onnx",
-                "reward": null,
-                "creation_time": 1712522310.570545,
-                "auxillary_file_paths": [
-                    "results\\NewMovement\\FYP_Movement_1\\FYP_Movement_1-16880019.pt"
-                ]
-            },
-            {
-                "steps": 16999972,
-                "file_path": "results\\NewMovement\\FYP_Movement_1\\FYP_Movement_1-16999972.onnx",
-                "reward": 0.43117857600251835,
-                "creation_time": 1712522506.7208228,
-                "auxillary_file_paths": [
-                    "results\\NewMovement\\FYP_Movement_1\\FYP_Movement_1-16999972.pt"
-                ]
-            },
-            {
-                "steps": 17028917,
-                "file_path": "results\\NewMovement\\FYP_Movement_1\\FYP_Movement_1-17028917.onnx",
-                "reward": 0.22919048151622215,
-                "creation_time": 1712522543.8455598,
-                "auxillary_file_paths": [
-                    "results\\NewMovement\\FYP_Movement_1\\FYP_Movement_1-17028917.pt"
+                    "results\\NewMovement\\FYP_Movement_1\\FYP_Movement_1-23774495.pt"
                 ]
             }
         ],
         "final_checkpoint": {
-            "steps": 17028917,
+            "steps": 23774495,
             "file_path": "results\\NewMovement\\FYP_Movement_1.onnx",
-            "reward": 0.22919048151622215,
-            "creation_time": 1712522543.8455598,
+            "reward": null,
+            "creation_time": 1713205063.520282,
             "auxillary_file_paths": [
-                "results\\NewMovement\\FYP_Movement_1\\FYP_Movement_1-17028917.pt"
+                "results\\NewMovement\\FYP_Movement_1\\FYP_Movement_1-23774495.pt"
+=======
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 18980932,
+            "file_path": "results\\NewMovement\\FYP_Movement_1.onnx",
+            "reward": 0.7118214354850352,
+            "creation_time": 1713126354.049517,
+            "auxillary_file_paths": [
+                "results\\NewMovement\\FYP_Movement_1\\FYP_Movement_1-18980932.pt"
+>>>>>>> parent of a2f039f (Finished around wall training)
             ]
         }
     },
     "metadata": {
         "stats_format_version": "0.3.0",
         "mlagents_version": "0.29.0",
-        "torch_version": "2.1.0+cpu"
+        "torch_version": "2.2.2+cpu"
     }
 }
