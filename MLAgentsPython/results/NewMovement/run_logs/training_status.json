@@ -2,58 +2,58 @@
     "FYP_Movement_1": {
         "checkpoints": [
             {
-                "steps": 18067317,
-                "file_path": "results\\NewMovement\\FYP_Movement_1\\FYP_Movement_1-18067317.onnx",
-                "reward": 0.7092238133152325,
-                "creation_time": 1713102576.0124972,
+                "steps": 19999978,
+                "file_path": "results\\NewMovement\\FYP_Movement_1\\FYP_Movement_1-19999978.onnx",
+                "reward": 0.6482245001409735,
+                "creation_time": 1713348237.3188474,
                 "auxillary_file_paths": [
-                    "results\\NewMovement\\FYP_Movement_1\\FYP_Movement_1-18067317.pt"
+                    "results\\NewMovement\\FYP_Movement_1\\FYP_Movement_1-19999978.pt"
                 ]
             },
             {
-                "steps": 18499949,
-                "file_path": "results\\NewMovement\\FYP_Movement_1\\FYP_Movement_1-18499949.onnx",
-                "reward": 0.844047620271643,
-                "creation_time": 1713125348.4012353,
+                "steps": 20499978,
+                "file_path": "results\\NewMovement\\FYP_Movement_1\\FYP_Movement_1-20499978.onnx",
+                "reward": 0.621185331127128,
+                "creation_time": 1713349256.971572,
                 "auxillary_file_paths": [
-                    "results\\NewMovement\\FYP_Movement_1\\FYP_Movement_1-18499949.pt"
+                    "results\\NewMovement\\FYP_Movement_1\\FYP_Movement_1-20499978.pt"
                 ]
             },
             {
-                "steps": 18980932,
-                "file_path": "results\\NewMovement\\FYP_Movement_1\\FYP_Movement_1-18980932.onnx",
-                "reward": 0.7118214354850352,
-                "creation_time": 1713126354.049517,
+                "steps": 20541630,
+                "file_path": "results\\NewMovement\\FYP_Movement_1\\FYP_Movement_1-20541630.onnx",
+                "reward": 0.4769480623530619,
+                "creation_time": 1713349349.7882838,
                 "auxillary_file_paths": [
-                    "results\\NewMovement\\FYP_Movement_1\\FYP_Movement_1-18980932.pt"
+                    "results\\NewMovement\\FYP_Movement_1\\FYP_Movement_1-20541630.pt"
                 ]
             },
             {
-                "steps": 18999944,
-                "file_path": "results\\NewMovement\\FYP_Movement_1\\FYP_Movement_1-18999944.onnx",
-                "reward": 0.5411857254803181,
-                "creation_time": 1713185366.2353678,
+                "steps": 20999975,
+                "file_path": "results\\NewMovement\\FYP_Movement_1\\FYP_Movement_1-20999975.onnx",
+                "reward": 0.587210895582324,
+                "creation_time": 1713350395.745246,
                 "auxillary_file_paths": [
-                    "results\\NewMovement\\FYP_Movement_1\\FYP_Movement_1-18999944.pt"
+                    "results\\NewMovement\\FYP_Movement_1\\FYP_Movement_1-20999975.pt"
                 ]
             },
             {
-                "steps": 19402353,
-                "file_path": "results\\NewMovement\\FYP_Movement_1\\FYP_Movement_1-19402353.onnx",
-                "reward": 0.9370000101625919,
-                "creation_time": 1713186204.838144,
+                "steps": 21465884,
+                "file_path": "results\\NewMovement\\FYP_Movement_1\\FYP_Movement_1-21465884.onnx",
+                "reward": null,
+                "creation_time": 1713351442.5713038,
                 "auxillary_file_paths": [
-                    "results\\NewMovement\\FYP_Movement_1\\FYP_Movement_1-19402353.pt"
+                    "results\\NewMovement\\FYP_Movement_1\\FYP_Movement_1-21465884.pt"
                 ]
             }
         ],
         "final_checkpoint": {
-            "steps": 19402353,
+            "steps": 21465884,
             "file_path": "results\\NewMovement\\FYP_Movement_1.onnx",
-            "reward": 0.9370000101625919,
-            "creation_time": 1713186204.838144,
+            "reward": null,
+            "creation_time": 1713351442.5713038,
             "auxillary_file_paths": [
-                "results\\NewMovement\\FYP_Movement_1\\FYP_Movement_1-19402353.pt"
+                "results\\NewMovement\\FYP_Movement_1\\FYP_Movement_1-21465884.pt"
             ]
         }
     },
