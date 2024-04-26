@@ -7,26 +7,21 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class AgentController : Agent
 {
-    [SerializeField] private EnvironmentManager environmentManager;
+    [SerializeField] private Transform target;
+    [SerializeField] private Transform[] keysPositions;
+    private int _keys = 0;
     private Vector3 _agentStartingTransformPosition;
     private Quaternion _agentStartingTransformRotation;
+    private Vector3 _targetStartingTransformPosition;
+
     public bool IsLookingAtTarget { get; private set; } = false;
+    [SerializeField] private EnvironmentManager environmentManager;
 
     private void Start()
     {
-        Transform agentTransform = transform;
-        _agentStartingTransformPosition = agentTransform.position;
-        _agentStartingTransformRotation = agentTransform.rotation;
-    }
-
-    private void Update()
-    {
-        if (MaxStep - StepCount < 10)
-        {
-            SetReward(-1f);
-            environmentManager.AddTexture(false);
-            EndEpisode();
-        }
+        _agentStartingTransformPosition = transform.position;
+        _agentStartingTransformRotation = transform.rotation;
+        _targetStartingTransformPosition = target.transform.position;
     }
 
     private IEnumerator PrintObservations()
@@ -34,19 +29,20 @@ public class AgentController : Agent
         yield return new WaitForSeconds(Constants.PrintWaitTime);
         print(transform.position);
         print(transform.rotation);
+        print(target.transform.position);
         foreach (float observation in GetObservations())
         {
             print(observation);
         }
     }
 
-    private void Move(float zMovement, float xMovement)
+    protected void Move(float zMovement, float xMovement)
     {
         Vector3 directionToMove = new Vector3(xMovement, 0, zMovement);
         transform.Translate(directionToMove.normalized * (Constants.CharacterMoveSpeed * Time.deltaTime));
     }
 
-    private void Rotate(float xRotation)
+    protected void Rotate(float xRotation)
     {
         float rotationDirection = xRotation * Constants.CharacterRotateSpeed * Time.deltaTime;
         transform.Rotate(Vector3.up, rotationDirection);
@@ -59,25 +55,59 @@ public class AgentController : Agent
 
     private bool CheckIfLookingAtTarget()
     {
-        Vector3 playerToTarget = environmentManager.Target.transform.position - transform.position;
+        Vector3 playerToTarget = target.transform.position - transform.position;
         float dotProduct = Vector3.Dot(playerToTarget.normalized, transform.forward.normalized);
 
         if (dotProduct > Constants.DotProductAmount)
         {
             return true;
         }
+
         IsLookingAtTarget = false;
         return false;
     }
 
     public override void OnEpisodeBegin()
     {
-        transform.position = new Vector3(_agentStartingTransformPosition.x + Random.Range(Constants.RandomRangeMinPosition, Constants.RandomRangeMaxPosition),
-            _agentStartingTransformPosition.y, _agentStartingTransformPosition.z + Random.Range(Constants.RandomRangeMinPosition, Constants.RandomRangeMaxPosition));
-        transform.rotation = Quaternion.Euler(_agentStartingTransformRotation.x, 
-            Random.Range(Constants.RandomRangeMinRotation, Constants.RandomRangeMaxRotation), _agentStartingTransformRotation.z);
+        float randomRange = Random.Range(0f, 1f);
+        bool shouldRotateWall = randomRange >= 0.5f;
+
+        Vector3 agentStartingPosition, targetStartingPosition;
+        Vector3 startingPosition = environmentManager.startingTransform.position;
+        if (shouldRotateWall)
+        {
+            (agentStartingPosition, targetStartingPosition) = (
+                new Vector3(_agentStartingTransformPosition.x + 12, 0, startingPosition.z),
+                new Vector3(_targetStartingTransformPosition.x - 12, 0, startingPosition.z));
+        }
+        else
+        {
+            (agentStartingPosition, targetStartingPosition) =
+                (_agentStartingTransformPosition, _targetStartingTransformPosition);
+        }
         
-        environmentManager.OnEpisodeBegin();
+        (agentStartingPosition, targetStartingPosition) =
+            (_agentStartingTransformPosition, _targetStartingTransformPosition);
+
+        (agentStartingPosition, targetStartingPosition) = Random.Range(0f, 1f) >= 0.5f
+            ? (targetStartingPosition, agentStartingPosition)
+            : (agentStartingPosition, targetStartingPosition);
+
+        transform.position = new Vector3(
+            agentStartingPosition.x + Random.Range(Constants.RandomRangeMinPosition, Constants.RandomRangeMaxPosition),
+            agentStartingPosition.y,
+            agentStartingPosition.z + Random.Range(Constants.RandomRangeMinPosition, Constants.RandomRangeMaxPosition));
+        ;
+        transform.rotation = Quaternion.Euler(_agentStartingTransformRotation.x,
+            Random.Range(Constants.RandomRangeMinRotation, Constants.RandomRangeMaxRotation),
+            _agentStartingTransformRotation.z);
+        target.transform.position = new Vector3(targetStartingPosition.x +
+                                                Random.Range(Constants.RandomRangeMinPosition,
+                                                    Constants.RandomRangeMaxPosition),
+            targetStartingPosition.y,
+            targetStartingPosition.z +
+            Random.Range(Constants.RandomRangeMinPosition, Constants.RandomRangeMaxPosition));
+        environmentManager.OnEpisodeBegin(shouldRotateWall);
     }
 
     public override void OnActionReceived(ActionBuffers actions)
@@ -89,7 +119,7 @@ public class AgentController : Agent
         Move(zMovement, xMovement);
         Rotate(xRotation);
 
-        AddReward(Constants.MaxStepDividend/MaxStep);
+        AddReward(Constants.MaxStepDividend / MaxStep);
     }
 
     public override void CollectObservations(VectorSensor sensor)
@@ -99,9 +129,9 @@ public class AgentController : Agent
         sensor.AddObservation(false);
         sensor.AddObservation(false);
         sensor.AddObservation(false);
+        sensor.AddObservation(_keys);
         sensor.AddObservation(0);
         sensor.AddObservation(0);
-        sensor.AddObservation(Vector3.Distance(transform.position, environmentManager.Target.position));
     }
 
     public override void Heuristic(in ActionBuffers actionsOut)
@@ -114,5 +144,9 @@ public class AgentController : Agent
     private void OnTriggerEnter(Collider other)
     {
         other.GetComponent<ITriggerableObject>()?.Trigger(this);
+        if (other.GetComponent<ITriggerableObject>() is Key)
+        {
+            _keys++;
+        }
     }
 }

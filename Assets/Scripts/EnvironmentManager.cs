@@ -1,66 +1,62 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class EnvironmentManager : MonoBehaviour
 {
     internal AgentController AgentController;
-    [SerializeField] private List<Renderer> groundAreasRenderers;
+    [SerializeField] private Renderer ground;
     [SerializeField] private Texture victoryTexture;
     [SerializeField] private Texture failureTexture;
     [SerializeField] private AgentController agent;
     [SerializeField] private GoalScript target;
-    internal Transform Target => target.transform;
+    [SerializeField] private GameObject keyPrefab;
+    [SerializeField] private Transform[] bounds;
 
-    [SerializeField] private Vector2 wallGapRange = new(-22, 22);
-    [SerializeField] private List<Transform> wallGaps = new();
-    [SerializeField] private List<Transform> goalPotentialPositions = new();
-    private readonly List<Vector3> _wallGapStartingPosition = new();
+    [SerializeField] private Transform[] wallGaps;
+    [SerializeField] internal Transform startingTransform;
+    [SerializeField] private Vector2 wallGapRange = new Vector2(-22, 22);
+    private List<Vector3> wallGapStartingPosition;
+    private GameObject _key = null;
 
-    private void Start()
+    internal void OnEpisodeBegin(bool rotateWall)
     {
-        foreach (Transform wallGap in wallGaps)
-        {
-            _wallGapStartingPosition.Add(wallGap.position);
-        }
-    }
-
-    internal void OnEpisodeBegin()
-    {
-        for (int i = 0; i < wallGaps.Count; i++)
+        for (int i = 0; i < wallGaps.Length; i++)
         {
             Transform wallGap = wallGaps[i];
             Vector3 position = wallGap.position;
+            Quaternion rotation = wallGap.rotation;
 
-            if (wallGap.transform.rotation.y != 0)
+            if (rotateWall)
             {
-                position = new Vector3(position.x, position.y,
-                    _wallGapStartingPosition[i].z + Random.Range(wallGapRange.y, wallGapRange.x));
+                position = new Vector3(startingTransform.position.x,
+                    startingTransform.position.y,
+                    startingTransform.position.z + Random.Range(wallGapRange.y, wallGapRange.x));
+                rotation.eulerAngles = new Vector3(0, 90, 0);
             }
             else
             {
-                position = new Vector3(_wallGapStartingPosition[i].x + Random.Range(wallGapRange.y, wallGapRange.x),
-                    position.y, position.z);
+                position = new Vector3(startingTransform.position.x + Random.Range(wallGapRange.y, wallGapRange.x),
+                    startingTransform.position.y, startingTransform.position.z);
+                rotation.eulerAngles = Vector3.zero;
             }
 
             wallGap.position = position;
+            wallGap.rotation = rotation;
         }
 
-        Vector3 goalPosition = goalPotentialPositions[0].position;
-            // goalPotentialPositions[Random.Range(0, goalPotentialPositions.Count)].position;
-        target.transform.position = new Vector3(goalPosition.x +
-                                                Random.Range(Constants.RandomRangeMinPosition,
-                                                    Constants.RandomRangeMaxPosition),
-            goalPosition.y,
-            goalPosition.z + Random.Range(Constants.RandomRangeMinPosition, Constants.RandomRangeMaxPosition));
+
+        if (_key != null)
+        {
+            Destroy(_key.gameObject);
+        }
+        Vector3 keyPosition = new Vector3(Random.Range(bounds[0].position.x, bounds[1].position.x), 0,
+            Random.Range(bounds[0].position.z, bounds[1].position.z));
+        _key = Instantiate(keyPrefab, keyPosition, Quaternion.identity);
     }
 
     internal void AddTexture(bool succeeded)
     {
-        foreach (Renderer groundAreasRenderer in groundAreasRenderers)
-        {
-            groundAreasRenderer.material.mainTexture = succeeded ? victoryTexture : failureTexture;
-        }
+        ground.material.mainTexture = succeeded ? victoryTexture : failureTexture;
     }
 
     private void OnDrawGizmos()
