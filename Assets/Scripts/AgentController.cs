@@ -85,9 +85,6 @@ public class AgentController : Agent
             (agentStartingPosition, targetStartingPosition) =
                 (_agentStartingTransformPosition, _targetStartingTransformPosition);
         }
-        
-        (agentStartingPosition, targetStartingPosition) =
-            (_agentStartingTransformPosition, _targetStartingTransformPosition);
 
         (agentStartingPosition, targetStartingPosition) = Random.Range(0f, 1f) >= 0.5f
             ? (targetStartingPosition, agentStartingPosition)

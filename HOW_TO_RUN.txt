@@ -1,0 +1,18 @@
+Unity Version 2022.3.16f1 (Any LTS 2022 version shouldn't change anything)
+Unity project has all packages installed
+
+Python version 3.8
+Open terminal in FYP MLAgentsPython folder
+> .\Scripts\activate (NOT activate.bat or anything else just activate)
+> pip install mlagents
+> pip install torch torchvision torchaudio
+> pip install onnx
+> pip install protobuf==3.20.3
+type mlagents-learn just to check that its all installed correctly
+> mlagents-learn .\config\FYP_Movement_cfg.yaml --run-id=MoveToPointWithObstaclesWithLongerSight --resume
+That starts the python side of things
+
+Click run on the unity editor once the python side says it's listening on a port
+It should run.
+
+This video outlines the entire process: https://youtu.be/RANRz9oyzko
